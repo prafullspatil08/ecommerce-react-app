@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import {
   addToCartProduct,
+  deleteProduct,
   fetchSingleProduct,
 } from "../features/Post/PostSlice";
 import { AppDispatch } from "../app/Store";
+import { toast } from "react-toastify";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -33,12 +35,19 @@ const SingleProduct = () => {
     } else {
       dispatch(addToCartProduct([...cart, { ...product, quantity: 1 }]));
     }
+    toast.success("Product Added to Cart  !", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
     if (redirect) {
       navigate("/cart");
     }
   };
 
-  console.log(product);
+  const onDelete = () => {
+    dispatch(deleteProduct(id)).unwrap().then(()=>{
+      navigate('/products')
+    }).catch();
+  };
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
@@ -50,9 +59,25 @@ const SingleProduct = () => {
               src={product?.image}
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-              <h2 className="text-sm title-font text-gray-500 tracking-widest uppercase">
-                {product?.category}
-              </h2>
+              <div className="flex justify-between mb-2">
+                <h2 className="text-sm title-font text-gray-500 tracking-widest uppercase">
+                  {product?.category}
+                </h2>
+                <div className="flex cursor-pointer">
+                  <Link
+                    to={`/add-product/${id}`}
+                    className="text-sm  mr-2 title-font text-gray-500 tracking-widest uppercase"
+                  >
+                    Edit
+                  </Link>
+                  <h2
+                    onClick={onDelete}
+                    className="text-sm title-font text-gray-500 tracking-widest uppercase"
+                  >
+                    Delete
+                  </h2>
+                </div>
+              </div>
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
                 {product?.title}
               </h1>

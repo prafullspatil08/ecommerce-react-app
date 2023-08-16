@@ -36,6 +36,41 @@ export const saveProduct = createAsyncThunk(
   }
 );
 
+export const updateProduct = createAsyncThunk(
+  "product/saveProduct",
+  async (params:any) => {
+    try {
+      const response = await axios.put(
+        `${defaultURL}/${params?.id}`,
+        params
+      );
+      toast.success("Product Updated Successfully!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+      return response?.data;
+    } catch (error: any) {
+      console.error(error);
+    }
+  }
+);
+
+export const deleteProduct = createAsyncThunk(
+  "product/deleteProduct",
+  async (id:any) => {
+    try {
+      const response = await axios.delete(
+        `${defaultURL}/${id}`
+      );
+      toast.success("Product Delete Successfully!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+      return response?.data;
+    } catch (error: any) {
+      console.error(error);
+    }
+  }
+);
+
 
 export const fetchSingleProduct = createAsyncThunk(
   "product/fetchSingleProduct", async (id:any)=>{
@@ -66,9 +101,7 @@ export const productSlice = createSlice({
   initialState: initialProductState,
   reducers: {
     addToCartProduct:(state, action: PayloadAction<any>) =>{
-      toast.success("Product Added to Cart  !", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
+      
       state.cartItem = action?.payload;
     },
   },

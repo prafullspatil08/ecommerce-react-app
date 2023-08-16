@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AppDispatch } from "../app/Store";
 import { addToCartProduct } from "../features/Post/PostSlice";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const [total, setTotal] = useState(0);
@@ -44,6 +45,14 @@ const Cart = () => {
     const updatedCart = carts.filter((item: any) => item?.id !== id);
     dispatch(addToCartProduct(updatedCart));
   };
+
+  const onCheckout = () => {
+    if (carts.length > 0) {
+      toast.success("Product Order Successfully!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+    }
+  };
   return (
     <div>
       <div className="container mx-auto mt-10">
@@ -56,7 +65,9 @@ const Cart = () => {
 
             {carts.length === 0 ? (
               <>
-                <div className="mt-5 text-gray-700 text-center">No Items available</div>
+                <div className="mt-5 text-gray-700 text-center">
+                  No Items available
+                </div>
               </>
             ) : (
               <>
@@ -132,7 +143,7 @@ const Cart = () => {
             )}
             <Link
               to={"/products"}
-              className="flex font-semibold text-green-600 text-sm mt-10"
+              className="flex font-semibold text-primaryy-600 text-sm mt-10"
             >
               <MdOutlineKeyboardBackspace size={20} />
               Continue Shopping
@@ -174,7 +185,10 @@ const Cart = () => {
                 <span>Total cost</span>
                 <span>${total + 10}</span>
               </div>
-              <button className="bg-green-500 font-semibold hover:bg-green-600 py-3  text-sm text-white uppercase w-full">
+              <button
+                onClick={onCheckout}
+                className="bg-primaryy-500 font-semibold hover:bg-primaryy-600 py-3  text-sm text-white uppercase w-full"
+              >
                 Checkout
               </button>
             </div>
