@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { AppDispatch } from "../app/Store";
+
 import {
   addToCartProduct,
   fetchSingleProduct,
-} from "../features/Post/PostAction";
-import { toast } from "react-toastify";
+} from "../features/Post/PostSlice";
+import { AppDispatch } from "../app/Store";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -16,7 +16,7 @@ const SingleProduct = () => {
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchSingleProduct(id));
-  },[]);
+  }, [dispatch, id]);
   const addToCart = (product: any, redirect: boolean) => {
     const isProductExist = cart?.find((item: any) => item?.id === product?.id);
     if (isProductExist) {
@@ -36,9 +36,6 @@ const SingleProduct = () => {
     if (redirect) {
       navigate("/cart");
     }
-    toast.success("Product Added to Cart  !", {
-      position: toast.POSITION.BOTTOM_RIGHT,
-    });
   };
 
   console.log(product);

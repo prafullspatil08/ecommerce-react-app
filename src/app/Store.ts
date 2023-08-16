@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import productSlice from '../features/Post/PostSlice';
 
 const store = configureStore({
-    reducer: {product: productSlice.reducer}
+    reducer: {product: productSlice}
 })
 
 export type RootState = ReturnType<typeof store.getState>;

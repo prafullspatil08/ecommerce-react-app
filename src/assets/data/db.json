@@ -247,6 +247,22 @@
       "description": "UHFSAUyfousayfosyfs",
       "image": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
       "id": 21
+    },
+    {
+      "title": "Sanket ",
+      "price": "12",
+      "category": "jewelery",
+      "description": "CKGSCgsict Sanket ",
+      "image": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
+      "id": 22
+    },
+    {
+      "title": "Sanket",
+      "price": "12",
+      "category": "men's clothing",
+      "description": "DSYAFODUISYFUSDAYo",
+      "image": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
+      "id": 23
     }
   ]
 }

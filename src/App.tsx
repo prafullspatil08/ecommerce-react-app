@@ -9,8 +9,8 @@ import Products from "./screens/Products";
 import Cart from "./screens/Cart";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "./app/Store";
-import { fetchAllProduct } from "./features/Post/PostAction";
 import AddProduct from "./screens/AddProduct";
+import { fetchAllProduct } from "./features/Post/PostSlice";
 
 function App() {
   const [isDark, setIsDark] = useState(false);

@@ -4,7 +4,7 @@ import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AppDispatch } from "../app/Store";
-import { addToCartProduct } from "../features/Post/PostAction";
+import { addToCartProduct } from "../features/Post/PostSlice";
 
 const Cart = () => {
   const [total, setTotal] = useState(0);
@@ -152,7 +152,7 @@ const Cart = () => {
               <label className="font-medium inline-block mb-3 text-sm uppercase">
                 Shipping
               </label>
-              <select className="block p-2 text-gray-200 w-full text-sm">
+              <select className="block p-2  w-full text-sm">
                 <option>Standard Shipping - $10.00</option>
               </select>
             </div>

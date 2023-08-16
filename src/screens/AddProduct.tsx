@@ -20,8 +20,11 @@ const AddProduct = () => {
 
   const onSubmit = (values: any, { resetForm, validateForm }: any) => {
     var payload = values;
-    payload['image']="https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg"
-    dispatch(saveProduct(payload))
+    payload["image"] =
+      "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg";
+    dispatch(saveProduct(payload));
+    resetForm();
+    validateForm();
   };
   return (
     <div>
@@ -123,10 +126,9 @@ const AddProduct = () => {
                                 onChange={(e) =>
                                   handleChange(field, e.target.value)
                                 }
-                                defaultValue={'DEFAULT'}
+                                value={field.value}
                                 className="block p-2 capitalize focus:border-none text-gray-800 w-full text-sm"
                               >
-                                <option value="DEFAULT">Choose Category</option>
                                 <option value="men's clothing">
                                   men's clothing
                                 </option>

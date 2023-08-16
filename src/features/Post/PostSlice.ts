@@ -1,7 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Product, ProductArrayModel } from "../../models/product";
-import ProductService from "../../services/apiService";
+import { ProductArrayModel } from "../../models/product";
 import axios from "axios";
+import { toast } from "react-toastify";
 const defaultURL="http://localhost:3004/products/"
 
 const initialProductState: ProductArrayModel = {
@@ -26,6 +26,9 @@ export const saveProduct = createAsyncThunk(
         defaultURL,
         params
       );
+      toast.success("Product Added Successfully!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       return response?.data;
     } catch (error: any) {
       console.error(error);
@@ -35,9 +38,9 @@ export const saveProduct = createAsyncThunk(
 
 
 export const fetchSingleProduct = createAsyncThunk(
-  "product/getSingleProduct", async (id:number)=>{
+  "product/fetchSingleProduct", async (id:any)=>{
     try{
-      const response = await axios.get(`defaultURL/${id}`);
+      const response = await axios.get(`${defaultURL}/${id}`);
       return response?.data
     }
     catch(error:any){
@@ -47,7 +50,7 @@ export const fetchSingleProduct = createAsyncThunk(
 )
 
 export const fetchAllProduct = createAsyncThunk(
-  "product/getAllProduct", async (param:any)=>{
+  "product/getAllProduct", async ()=>{
     try{
       const response = await axios.get(defaultURL);
       return response?.data
@@ -62,42 +65,46 @@ export const productSlice = createSlice({
   name: "product",
   initialState: initialProductState,
   reducers: {
-    setCartItem(state, action: PayloadAction<any>) {
+    addToCartProduct:(state, action: PayloadAction<any>) =>{
+      toast.success("Product Added to Cart  !", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       state.cartItem = action?.payload;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(saveProduct.pending, (state:any,action:any)=>{
+    builder.addCase(saveProduct.pending, (state:any,action)=>{
       state.loading = true;
     })
-    .addCase(saveProduct.fulfilled, (state:any,action:any)=>{
+    .addCase(saveProduct.fulfilled, (state:any,action)=>{
       state.loading = false;
 
     })
-    .addCase(saveProduct.rejected, (state:any,action:any)=>{
+    .addCase(saveProduct.rejected, (state:any,action)=>{
       state.loading = true;
     })
-    .addCase(fetchAllProduct.pending, (state:any, action:any)=>{
+    .addCase(fetchAllProduct.pending, (state:any, action)=>{
       state.loading = true;
     })
-    .addCase(fetchAllProduct.fulfilled, (state:any, action:any)=>{
+    .addCase(fetchAllProduct.fulfilled, (state:any, action)=>{
       state.loading = false;
       state.all_products = action.payload;
     })
-    .addCase(fetchAllProduct.rejected, (state:any, action:any)=>{
+    .addCase(fetchAllProduct.rejected, (state:any, action)=>{
       state.loading = false;
     })
-    .addCase(fetchSingleProduct.pending, (state:any, action:any)=>{
+    .addCase(fetchSingleProduct.pending, (state:any, action)=>{
       state.loading = true;
     })
-    .addCase(fetchSingleProduct.fulfilled, (state:any, action:any)=>{
+    .addCase(fetchSingleProduct.fulfilled, (state:any, action)=>{
       state.loading = false;
       state.product= action.payload
     })
-    .addCase(fetchSingleProduct.rejected, (state:any, action:any)=>{
+    .addCase(fetchSingleProduct.rejected, (state:any, action)=>{
       state.loading = false;
     })
   },
 });
 
-export default productSlice;
+export const {addToCartProduct} = productSlice.actions;
+export default productSlice.reducer;
