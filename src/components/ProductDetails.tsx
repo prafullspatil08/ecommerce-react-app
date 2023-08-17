@@ -17,6 +17,7 @@ const ProductDetails = () => {
   }, [dispatch, id]);
   const addToCart = (product: any, redirect: boolean) => {
     const isProductExist = cart?.find((item: any) => item?.id === product?.id);
+    console.log('isProductExist: ', isProductExist)
     if (isProductExist) {
       const updatedCart = cart?.map((item: any) => {
         if (item?.id === product?.id) {
@@ -29,11 +30,11 @@ const ProductDetails = () => {
       });
       dispatch(addToCartProduct(updatedCart));
     } else {
-      if(cart?.length > 0){
-        dispatch(addToCartProduct([cart, { ...product, quantity: 1 }]));
-      }else{
-        dispatch(addToCartProduct([{ ...product, quantity: 1 }]));
-      }
+      // if(cart?.length > 0){
+        dispatch(addToCartProduct([...cart, { ...product, quantity: 1 }]));
+      // }else{
+        // dispatch(addToCartProduct([{ ...product, quantity: 1 }]));
+      // }
     }
     toast.success("Product Added to Cart  !", {
       position: toast.POSITION.BOTTOM_RIGHT,

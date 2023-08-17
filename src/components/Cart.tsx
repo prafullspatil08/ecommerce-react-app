@@ -10,7 +10,6 @@ import { addToCartProduct } from "../app/slices/CartSlice";
 const Cart = () => {
   const [total, setTotal] = useState(0);
   const carts = useSelector((state: any) => state?.cart?.cartItems);
-  console.log('carts: ', carts)
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     const total = carts.reduce((acc: any, item: any) => {

@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import { BsNintendoSwitch } from "react-icons/bs";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Badge } from "@mui/material";
+import { useSelector } from "react-redux";
 const Header = (props: any) => {
+  const carts = useSelector((state: any) => state?.cart?.cartItems);
   const navigations = [
     {
       name: "Home",
@@ -67,7 +69,7 @@ const Header = (props: any) => {
               className="cursor-pointer text-primaryy-500 mt-[5px] mr-2"
             />
             <Link to={"/cart"} className="flex">
-              <Badge badgeContent={4}>
+              <Badge badgeContent={carts?.length}>
                 <ShoppingCartIcon
                   className="text-primaryy-500"
                   sx={{
