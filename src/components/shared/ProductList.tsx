@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-const ProductCard = () => {
+const ProductList = () => {
   const products = useSelector((state: any) => state?.product?.all_products);
   if (products?.length === 0) {
     return (
@@ -54,4 +54,4 @@ const ProductCard = () => {
   );
 };
 
-export default ProductCard;
+export default ProductList;

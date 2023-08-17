@@ -1,19 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import {
-  addToCartProduct,
-  deleteProduct,
-  fetchSingleProduct,
-} from "../app/slices/ProductSlice";
+import { deleteProduct, fetchSingleProduct } from "../app/slices/ProductSlice";
 import { AppDispatch } from "../app/Store";
 import { toast } from "react-toastify";
+import { addToCartProduct } from "../app/slices/CartSlice";
 
-const SingleProduct = () => {
+const ProductDetails = () => {
   const { id } = useParams();
   const product = useSelector((state: any) => state?.product?.product);
   const dispatch = useDispatch<AppDispatch>();
-  const cart = useSelector((state: any) => state?.product?.cartItem);
+  const cart = useSelector((state: any) => state?.cart?.cartItems);
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchSingleProduct(id));
@@ -32,7 +29,7 @@ const SingleProduct = () => {
       });
       dispatch(addToCartProduct(updatedCart));
     } else {
-      dispatch(addToCartProduct([...cart, { ...product, quantity: 1 }]));
+      dispatch(addToCartProduct([cart, { ...product, quantity: 1 }]));
     }
     toast.success("Product Added to Cart  !", {
       position: toast.POSITION.BOTTOM_RIGHT,
@@ -43,9 +40,12 @@ const SingleProduct = () => {
   };
 
   const onDelete = () => {
-    dispatch(deleteProduct(id)).unwrap().then(()=>{
-      navigate('/products')
-    }).catch();
+    dispatch(deleteProduct(id))
+      .unwrap()
+      .then(() => {
+        navigate("/products");
+      })
+      .catch();
   };
   return (
     <>
@@ -252,4 +252,4 @@ const SingleProduct = () => {
   );
 };
 
-export default SingleProduct;
+export default ProductDetails;

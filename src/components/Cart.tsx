@@ -4,8 +4,8 @@ import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AppDispatch } from "../app/Store";
-import { addToCartProduct } from "../app/slices/ProductSlice";
 import { toast } from "react-toastify";
+import { addToCartProduct } from "../app/slices/CartSlice";
 
 const Cart = () => {
   const [total, setTotal] = useState(0);

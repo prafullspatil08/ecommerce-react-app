@@ -1,4 +1,4 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { ProductArrayModel } from "../../models/product";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -100,10 +100,10 @@ export const productSlice = createSlice({
   name: "product",
   initialState: initialProductState,
   reducers: {
-    addToCartProduct:(state, action: PayloadAction<any>) =>{
+    // addToCartProduct:(state, action: PayloadAction<any>) =>{
       
-      state.cartItem = action?.payload;
-    },
+    //   state.cartItem = action?.payload;
+    // },
   },
   extraReducers: (builder) => {
     builder.addCase(saveProduct.pending, (state:any,action)=>{
@@ -139,5 +139,5 @@ export const productSlice = createSlice({
   },
 });
 
-export const {addToCartProduct} = productSlice.actions;
+// export const {addToCartProduct} = productSlice.actions;
 export default productSlice.reducer;

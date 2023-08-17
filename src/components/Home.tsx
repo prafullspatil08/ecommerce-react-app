@@ -3,7 +3,7 @@ import Carousel from '../components/shared/Carousel'
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../app/Store';
 import { fetchAllProduct } from '../app/slices/ProductSlice';
-import ProductCard from '../components/shared/ProductCard';
+import ProductCard from './shared/ProductList';
 
 const Home = () => {
   const dispatch = useDispatch<AppDispatch>();
