@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BsNintendoSwitch } from "react-icons/bs";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Badge } from "@mui/material";
+import { BsFillCartFill, BsNintendoSwitch } from "react-icons/bs";
 import { useSelector } from "react-redux";
+import { Badge } from "@material-tailwind/react";
 const Header = (props: any) => {
   const carts = useSelector((state: any) => state?.cart?.cartItems);
   const navigations = [
@@ -69,7 +68,13 @@ const Header = (props: any) => {
               className="cursor-pointer text-primaryy-500 mt-[5px] mr-2"
             />
             <Link to={"/cart"} className="flex">
-              <Badge badgeContent={carts?.length}>
+              <Badge content={carts?.length}>
+                <BsFillCartFill
+                  size={30}
+                  className="text-primaryy-500 mt-[5px]"
+                />
+              </Badge>
+              {/* <Badge badgeContent={carts?.length}>
                 <ShoppingCartIcon
                   className="text-primaryy-500"
                   sx={{
@@ -77,7 +82,7 @@ const Header = (props: any) => {
                     width: 30,
                   }}
                 />
-              </Badge>
+              </Badge> */}
             </Link>
           </div>
         </div>

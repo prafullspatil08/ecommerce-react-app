@@ -9,7 +9,7 @@ import { persistor, store } from "./app/Store";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PersistGate } from "redux-persist/integration/react";
-import { CircularProgress } from "@mui/material";
+import { ThemeProvider } from "@material-tailwind/react";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,9 +17,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={<CircularProgress />} persistor={persistor}>
+      <PersistGate loading={<></>} persistor={persistor}>
         <BrowserRouter>
-          <App />
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
           <ToastContainer />
         </BrowserRouter>
       </PersistGate>

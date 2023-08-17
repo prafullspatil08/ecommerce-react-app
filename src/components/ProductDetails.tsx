@@ -1,12 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { deleteProduct, fetchSingleProduct } from "../app/slices/ProductSlice";
 import { AppDispatch } from "../app/Store";
 import { toast } from "react-toastify";
 import { addToCartProduct } from "../app/slices/CartSlice";
+import {
+  Button,
+  Dialog,
+  DialogBody,
+  DialogFooter,
+  DialogHeader,
+  Input,
+  Textarea,
+  Typography,
+} from "@material-tailwind/react";
 
 const ProductDetails = () => {
+  const [open, setOpen] = useState(false);
   const { id } = useParams();
   const product = useSelector((state: any) => state?.product?.product);
   const dispatch = useDispatch<AppDispatch>();
@@ -17,7 +28,7 @@ const ProductDetails = () => {
   }, [dispatch, id]);
   const addToCart = (product: any, redirect: boolean) => {
     const isProductExist = cart?.find((item: any) => item?.id === product?.id);
-    console.log('isProductExist: ', isProductExist)
+    console.log("isProductExist: ", isProductExist);
     if (isProductExist) {
       const updatedCart = cart?.map((item: any) => {
         if (item?.id === product?.id) {
@@ -30,11 +41,7 @@ const ProductDetails = () => {
       });
       dispatch(addToCartProduct(updatedCart));
     } else {
-      // if(cart?.length > 0){
-        dispatch(addToCartProduct([...cart, { ...product, quantity: 1 }]));
-      // }else{
-        // dispatch(addToCartProduct([{ ...product, quantity: 1 }]));
-      // }
+      dispatch(addToCartProduct([...cart, { ...product, quantity: 1 }]));
     }
     toast.success("Product Added to Cart  !", {
       position: toast.POSITION.BOTTOM_RIGHT,
@@ -43,7 +50,7 @@ const ProductDetails = () => {
       navigate("/cart");
     }
   };
-
+  const handleOpen = () => setOpen(!open);
   const onDelete = () => {
     dispatch(deleteProduct(id))
       .unwrap()
@@ -75,7 +82,7 @@ const ProductDetails = () => {
                     Edit
                   </Link>
                   <h2
-                    onClick={onDelete}
+                    onClick={handleOpen}
                     className="text-sm title-font text-gray-500 tracking-widest uppercase"
                   >
                     Delete
@@ -253,6 +260,35 @@ const ProductDetails = () => {
           </div>
         </div>
       </section>
+      <Dialog
+        className="fixed"
+        style={{ top: "0" }}
+        open={open}
+        handler={handleOpen}
+      >
+        <div className="flex items-center justify-between">
+          <DialogHeader>Confirmation</DialogHeader>
+        </div>
+        <DialogBody divider>
+          <div className="grid gap-6">
+            <p>Do you want to delete product?</p>
+          </div>
+        </DialogBody>
+        <DialogFooter className="space-x-2">
+          <button
+            className="flex ml-auto mr-2 text-gray-800 border border-primaryy-500 py-2 px-6 focus:outline-none hover:bg-primaryy-500 hover:text-white rounded"
+            onClick={handleOpen}
+          >
+            Close
+          </button>
+          <button
+            className="flex ml-auto mr-2 text-white bg-primaryy-500 border-0 hover:border hover:text-gray-800 py-2 px-6 focus:outline-none hover:border-primaryy-500 hover:bg-white rounded"
+            onClick={onDelete}
+          >
+            Delete
+          </button>
+        </DialogFooter>
+      </Dialog>
     </>
   );
 };
