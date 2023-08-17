@@ -47,7 +47,8 @@ const Cart = () => {
   };
 
   const onCheckout = () => {
-    if (carts.length > 0) {
+    if (carts?.length > 0) {
+      dispatch(addToCartProduct([]));
       toast.success("Product Order Successfully!", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
@@ -89,7 +90,7 @@ const Cart = () => {
                   return (
                     <div
                       key={item?.id}
-                      className="flex items-center hover:bg-gray-100 --mx-8 px-6 py-5"
+                      className="flex items-center hover:bg-gray-100 py-5"
                     >
                       <div className="flex w-2/5">
                         <div className="w-20">
