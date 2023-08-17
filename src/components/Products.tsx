@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../app/Store';
-import { fetchAllProduct } from '../app/slices/ProductSlice';
-import ProductCard from './shared/ProductList';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../app/Store";
+import { fetchAllProduct } from "../app/slices/ProductSlice";
+import ProductCard from "./shared/ProductList";
 
 const Products = () => {
   const dispatch = useDispatch<AppDispatch>();
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchAllProduct());
-  })
+  });
   return (
     <div>
-        <ProductCard />
+      <ProductCard />
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;

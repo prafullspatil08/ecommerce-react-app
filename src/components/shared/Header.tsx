@@ -74,15 +74,6 @@ const Header = (props: any) => {
                   className="text-primaryy-500 mt-[5px]"
                 />
               </Badge>
-              {/* <Badge badgeContent={carts?.length}>
-                <ShoppingCartIcon
-                  className="text-primaryy-500"
-                  sx={{
-                    height: 40,
-                    width: 30,
-                  }}
-                />
-              </Badge> */}
             </Link>
           </div>
         </div>

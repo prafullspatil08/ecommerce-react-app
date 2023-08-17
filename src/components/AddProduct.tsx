@@ -2,7 +2,11 @@ import { Field, Form, Formik } from "formik";
 import { productFormValidationSchema } from "../utils/ValidationSchemas";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../app/Store";
-import { fetchSingleProduct, saveProduct, updateProduct } from "../app/slices/ProductSlice";
+import {
+  fetchSingleProduct,
+  saveProduct,
+  updateProduct,
+} from "../app/slices/ProductSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -26,13 +30,16 @@ const AddProduct = () => {
   };
 
   const onSubmit = (values: any, { resetForm, validateForm }: any) => {
-    var payload =values;
+    var payload = values;
     if (id) {
-      payload['id']=id
-      payload["image"] = product.image
-      dispatch(updateProduct(payload)).unwrap().then(()=>{
-        navigate('/products')
-      }).catch();
+      payload["id"] = id;
+      payload["image"] = product.image;
+      dispatch(updateProduct(payload))
+        .unwrap()
+        .then(() => {
+          navigate("/products");
+        })
+        .catch();
       resetForm();
       validateForm();
     } else {
@@ -115,28 +122,30 @@ const AddProduct = () => {
                           </label>
                           <Field name="price">
                             {({ field, form }: any) => (
-                             <> <input
-                                type="number"
-                                id="price"
-                                name="price"
-                                value={field.value}
-                                onChange={(e) =>
-                                  handleChange(field, e.target.value)
-                                }
-                                onBlur={(e) => {
-                                  form.setTouched({
-                                    ...form.touched,
-                                    price: true,
-                                  });
-                                }}
-                                className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-primaryy-500 focus:bg-white focus:ring-2 focus:ring-primaryy-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                              />
-                              {form.touched.price &&
-                                Boolean(form.errors.price) && (
-                                  <span className="text-red-500 text-sm capitalize">
-                                    {form.touched.price && form.errors.price}
-                                  </span>
-                                )}
+                              <>
+                                {" "}
+                                <input
+                                  type="number"
+                                  id="price"
+                                  name="price"
+                                  value={field.value}
+                                  onChange={(e) =>
+                                    handleChange(field, e.target.value)
+                                  }
+                                  onBlur={(e) => {
+                                    form.setTouched({
+                                      ...form.touched,
+                                      price: true,
+                                    });
+                                  }}
+                                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-primaryy-500 focus:bg-white focus:ring-2 focus:ring-primaryy-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                />
+                                {form.touched.price &&
+                                  Boolean(form.errors.price) && (
+                                    <span className="text-red-500 text-sm capitalize">
+                                      {form.touched.price && form.errors.price}
+                                    </span>
+                                  )}
                               </>
                             )}
                           </Field>
@@ -152,34 +161,38 @@ const AddProduct = () => {
                           </label>
                           <Field name="category">
                             {({ field, form }: any) => (
-                              <><select
-                                onChange={(e) =>
-                                  handleChange(field, e.target.value)
-                                }
-                                onBlur={(e) => {
-                                  form.setTouched({
-                                    ...form.touched,
-                                    category: true,
-                                  });
-                                }}
-                                value={field.value}
-                                className="block p-2 capitalize focus:border-none text-gray-800 w-full text-sm"
-                              >
-                                <option value="men's clothing">
-                                  men's clothing
-                                </option>
-                                <option value="jewelery">jewelery</option>
-                                <option value="electronics">electronics</option>
-                                <option value="women's clothing">
-                                  women's clothing
-                                </option>
-                              </select>
-                              {form.touched.category &&
-                                Boolean(form.errors.category) && (
-                                  <span className="text-red-500 text-sm capitalize">
-                                    {form.touched.category && form.errors.category}
-                                  </span>
-                                )}
+                              <>
+                                <select
+                                  onChange={(e) =>
+                                    handleChange(field, e.target.value)
+                                  }
+                                  onBlur={(e) => {
+                                    form.setTouched({
+                                      ...form.touched,
+                                      category: true,
+                                    });
+                                  }}
+                                  value={field.value}
+                                  className="block p-2 capitalize focus:border-none text-gray-800 w-full text-sm"
+                                >
+                                  <option value="men's clothing">
+                                    men's clothing
+                                  </option>
+                                  <option value="jewelery">jewelery</option>
+                                  <option value="electronics">
+                                    electronics
+                                  </option>
+                                  <option value="women's clothing">
+                                    women's clothing
+                                  </option>
+                                </select>
+                                {form.touched.category &&
+                                  Boolean(form.errors.category) && (
+                                    <span className="text-red-500 text-sm capitalize">
+                                      {form.touched.category &&
+                                        form.errors.category}
+                                    </span>
+                                  )}
                               </>
                             )}
                           </Field>
@@ -196,27 +209,28 @@ const AddProduct = () => {
                           <Field name="description">
                             {({ field, form }: any) => (
                               <>
-                              <textarea
-                                id="description"
-                                name="description"
-                                onChange={(e) =>
-                                  handleChange(field, e.target.value)
-                                }
-                                onBlur={(e) => {
-                                  form.setTouched({
-                                    ...form.touched,
-                                    description: true,
-                                  });
-                                }}
-                                value={field.value}
-                                className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-primaryy-500 focus:bg-white focus:ring-2 focus:ring-primaryy-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                              />
-                               {form.touched.description &&
-                                Boolean(form.errors.description) && (
-                                  <span className="text-red-500 text-sm capitalize">
-                                    {form.touched.description && form.errors.description}
-                                  </span>
-                                )}
+                                <textarea
+                                  id="description"
+                                  name="description"
+                                  onChange={(e) =>
+                                    handleChange(field, e.target.value)
+                                  }
+                                  onBlur={(e) => {
+                                    form.setTouched({
+                                      ...form.touched,
+                                      description: true,
+                                    });
+                                  }}
+                                  value={field.value}
+                                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-primaryy-500 focus:bg-white focus:ring-2 focus:ring-primaryy-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                                />
+                                {form.touched.description &&
+                                  Boolean(form.errors.description) && (
+                                    <span className="text-red-500 text-sm capitalize">
+                                      {form.touched.description &&
+                                        form.errors.description}
+                                    </span>
+                                  )}
                               </>
                             )}
                           </Field>
