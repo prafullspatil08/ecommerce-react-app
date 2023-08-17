@@ -28,7 +28,6 @@ const ProductDetails = () => {
   }, [dispatch, id]);
   const addToCart = (product: any, redirect: boolean) => {
     const isProductExist = cart?.find((item: any) => item?.id === product?.id);
-    console.log("isProductExist: ", isProductExist);
     if (isProductExist) {
       const updatedCart = cart?.map((item: any) => {
         if (item?.id === product?.id) {
