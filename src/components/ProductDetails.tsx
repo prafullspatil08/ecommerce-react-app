@@ -91,7 +91,7 @@ const ProductDetails = () => {
                   </Tooltip>
                 </div>
               </div>
-              <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
+              <h1 className="text-gray-900 text-3xl dark:text-gray-300 title-font font-medium mb-1">
                 {product?.title}
               </h1>
               <div className="flex mb-4">

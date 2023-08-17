@@ -53,17 +53,21 @@ const Cart = () => {
       toast.success("Product Order Successfully!", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
+    } else {
+      toast.error("Please Add Product To Cart", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
   };
 
-  const handleRoute =(path:string)=>{
-    navigate(path)
-  }
+  const handleRoute = (path: string) => {
+    navigate(path);
+  };
   return (
     <div>
-      <div className="container mx-auto mt-10">
+      <div className="container mx-auto mt-10 dark:text-gray-300">
         <div className="flex shadow-md my-10">
-          <div className="w-3/4 bg-white px-10 py-10">
+          <div className="w-3/4 bg-white  dark:bg-night-500 px-10 py-10">
             <div className="flex justify-between pb-4 border-b first-letter:pb-8">
               <h1 className="font-semibold text-2xl">Shopping cart</h1>
               <h1 className="font-semibold text-2xl">1 Items</h1>
@@ -95,9 +99,9 @@ const Cart = () => {
                   return (
                     <div
                       key={item?.id}
-                      className="flex items-center hover:bg-gray-100 py-5"
+                      className="flex items-center hover:dark:bg-night-400 hover:bg-gray-100 py-5"
                     >
-                      <div className="flex w-2/5">
+                      <div className="flex w-2/5 ">
                         <div className="w-20">
                           <img
                             className="h-24"
@@ -106,7 +110,7 @@ const Cart = () => {
                           />
                         </div>
                         <div className="flex flex-col justify-between ml-4 flex-grow">
-                          <span className="font-bold text-sm">
+                          <span className="font-bold  text-sm">
                             {item?.title}
                           </span>
                           <span className="text-red-500 text-xs capitalize">
@@ -147,7 +151,8 @@ const Cart = () => {
                 })}
               </>
             )}
-            <button onClick={()=> handleRoute}
+            <button
+              onClick={() => handleRoute("/products")}
               className="flex font-semibold text-primaryy-600 text-sm mt-10"
             >
               <MdOutlineKeyboardBackspace size={20} />

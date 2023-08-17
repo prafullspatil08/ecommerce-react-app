@@ -24,7 +24,7 @@ function App() {
       <PersistGate persistor={persistor}>
         <BrowserRouter>
           <ThemeProvider>
-            <div className={`${isDark ? "dark" : "light"}`}>
+            <div className={`${!isDark ? "dark" : "light"}`}>
               <Header isDark={isDark} setDarkMode={themeHandler} />
               <Router/>
               <Footer/>

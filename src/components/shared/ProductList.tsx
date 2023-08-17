@@ -29,8 +29,8 @@ const ProductList = () => {
               return (
                 <button
                   key={product?.id}
-                  onClick={()=> handleRoute(`/product/${id}`)}
-                  className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-lg cursor-pointer rounded"
+                  onClick={() => handleRoute(`/product/${id}`)}
+                  className="lg:w-1/4 md:w-1/2 p-4 w-full  shadow-lg cursor-pointer rounded"
                 >
                   <p className="block relative h-48 rounded overflow-hidden">
                     <img
@@ -43,7 +43,7 @@ const ProductList = () => {
                     <h3 className="text-gray-500 uppercase text-xs tracking-widest title-font mb-1">
                       {category}
                     </h3>
-                    <h2 className="text-gray-800 truncate title-font text-lg font-medium">
+                    <h2 className="text-gray-800 dark:text-gray-300 truncate title-font text-lg font-medium">
                       {title}
                     </h2>
                     <p className="mt-1 text-md font-semibold">${price}</p>
