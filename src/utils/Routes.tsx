@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from '../components/Home'
-import { ROUTES } from './routes'
+import { ROUTES } from './appConstant'
 import Products from '../components/Products'
 import ProductDetails from '../components/ProductDetails'
 import Cart from '../components/Cart'
