@@ -6,14 +6,10 @@ import { AppDispatch } from "../app/Store";
 import { toast } from "react-toastify";
 import { addToCartProduct } from "../app/slices/CartSlice";
 import {
-  Button,
   Dialog,
   DialogBody,
   DialogFooter,
   DialogHeader,
-  Input,
-  Textarea,
-  Typography,
 } from "@material-tailwind/react";
 
 const ProductDetails = () => {
