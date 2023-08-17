@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BsFillCartFill, BsNintendoSwitch } from "react-icons/bs";
-
+import { BsNintendoSwitch } from "react-icons/bs";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Badge } from "@mui/material";
 const Header = (props: any) => {
   const navigations = [
     {
@@ -54,17 +55,27 @@ const Header = (props: any) => {
             <span className="ml-3 text-xl">E-commerce</span>
           </p>
           <div className="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
-            <Link to={'/add-product'} className="text-white bg-primaryy-500 border-0 py-2 px-6 focus:outline-none hover:bg-primaryy-700 rounded mr-2">Add Product</Link>
+            <Link
+              to={"/add-product"}
+              className="text-white bg-primaryy-500 border-0 py-2 px-6 focus:outline-none hover:bg-primaryy-700 rounded mr-2"
+            >
+              Add Product
+            </Link>
             <BsNintendoSwitch
               onClick={props.setDarkMode}
               size={30}
               className="cursor-pointer text-primaryy-500 mt-[5px] mr-2"
             />
-            <Link to={"/cart"}>
-              <BsFillCartFill
-                size={30}
-                className="text-primaryy-500 mt-[5px]"
-              />
+            <Link to={"/cart"} className="flex">
+              <Badge badgeContent={4}>
+                <ShoppingCartIcon
+                  className="text-primaryy-500"
+                  sx={{
+                    height: 40,
+                    width: 30,
+                  }}
+                />
+              </Badge>
             </Link>
           </div>
         </div>

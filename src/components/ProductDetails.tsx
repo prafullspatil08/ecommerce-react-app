@@ -29,7 +29,11 @@ const ProductDetails = () => {
       });
       dispatch(addToCartProduct(updatedCart));
     } else {
-      dispatch(addToCartProduct([cart, { ...product, quantity: 1 }]));
+      if(cart?.length > 0){
+        dispatch(addToCartProduct([cart, { ...product, quantity: 1 }]));
+      }else{
+        dispatch(addToCartProduct([{ ...product, quantity: 1 }]));
+      }
     }
     toast.success("Product Added to Cart  !", {
       position: toast.POSITION.BOTTOM_RIGHT,

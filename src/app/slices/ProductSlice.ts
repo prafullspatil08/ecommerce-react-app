@@ -7,7 +7,6 @@ const defaultURL="http://localhost:3004/products/"
 const initialProductState: ProductArrayModel = {
   all_products: [],
   loading: false,
-  cartItem: [],
   product: {
     id: 0,
     title: "",
@@ -139,5 +138,4 @@ export const productSlice = createSlice({
   },
 });
 
-// export const {addToCartProduct} = productSlice.actions;
 export default productSlice.reducer;

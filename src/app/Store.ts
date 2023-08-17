@@ -3,6 +3,7 @@ import productSlice from "./slices/ProductSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import  cartSlice  from "./slices/CartSlice";
+import persistStore from "redux-persist/es/persistStore";
 const rootReducer = combineReducers({
   product: productSlice,
   cart: cartSlice,
@@ -10,15 +11,24 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: "root",
   version: 1,
-  storage: storage,
+  storage,
   whitelist: ["cart"],
+  //   CODE NEEDED TO ENCRYPT THE LOCALSTORAGE DATA
+  //   transforms: [
+  //     encryptTransform({
+  //       secretKey: process.env.REACT_APP_LOCAL_STORAGE_SECRET_KEY,
+  //     }),
+  //   ],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = configureStore({
   reducer: persistedReducer,
+  
 });
+
+let persistor= persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export default store;
+export {store, persistor};

@@ -10,6 +10,5 @@ export interface Product{
 export interface ProductArrayModel{
     all_products: Product[],
     product: Product,
-    cartItem:[],
     loading:boolean
 }
