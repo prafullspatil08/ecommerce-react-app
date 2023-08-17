@@ -6,14 +6,14 @@ const initialCartState: CartArrayModel = {
 };
 
 export const cartSlice = createSlice({
-    name: 'cart',
-    initialState: initialCartState,
-    reducers: {
-        addToCartProduct:(state:any, action:PayloadAction<any>) =>{
-            state.cartItems = action?.payload;
-          },
+  name: "cart",
+  initialState: initialCartState,
+  reducers: {
+    addToCartProduct: (state: any, action: PayloadAction<any>) => {
+      state.cartItems = action?.payload;
     },
-})
+  },
+});
 
-export const {addToCartProduct} = cartSlice.actions;
+export const { addToCartProduct } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Carousel from "../components/shared/Carousel";
+import Carousel from "./shared/Carousel";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../app/Store";
 import { fetchAllProduct } from "../app/slices/ProductSlice";

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const Carousel = () => {
   return (
@@ -11,7 +11,7 @@ const Carousel = () => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Carousel
+export default Carousel;

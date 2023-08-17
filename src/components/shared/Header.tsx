@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BsFillCartFill, BsNintendoSwitch } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { Badge } from "@material-tailwind/react";
 const Header = (props: any) => {
+  const navigate = useNavigate();
   const carts = useSelector((state: any) => state?.cart?.cartItems);
   const navigations = [
     {
@@ -23,6 +24,9 @@ const Header = (props: any) => {
       path: "/contact",
     },
   ];
+  const handleRoute = (path: string) => {
+    navigate(path);
+  };
   return (
     <div>
       <header className="text-gray-600 body-font shadow-lg dark:bg-night-500 dark:text-gray-300">
@@ -30,13 +34,13 @@ const Header = (props: any) => {
           <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
             {navigations.map((navigation: any) => {
               return (
-                <Link
+                <button
                   key={navigation.name}
                   className="mr-5 hover:text-gray-900"
-                  to={navigation?.path}
+                  onClick={() => handleRoute(navigation?.path)}
                 >
                   {navigation?.name}
-                </Link>
+                </button>
               );
             })}
           </nav>
@@ -56,25 +60,25 @@ const Header = (props: any) => {
             <span className="ml-3 text-xl">E-commerce</span>
           </p>
           <div className="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
-            <Link
-              to={"/add-product"}
+            <button
+              onClick={() => handleRoute("/add-product")}
               className="text-white bg-primaryy-500 border-0 py-2 px-6 focus:outline-none hover:bg-primaryy-700 rounded mr-2"
             >
               Add Product
-            </Link>
+            </button>
             <BsNintendoSwitch
               onClick={props.setDarkMode}
               size={30}
               className="cursor-pointer text-primaryy-500 mt-[5px] mr-2"
             />
-            <Link to={"/cart"} className="flex">
+            <button onClick={() => handleRoute("/cart")} className="flex">
               <Badge content={carts?.length}>
                 <BsFillCartFill
                   size={30}
                   className="text-primaryy-500 mt-[5px]"
                 />
               </Badge>
-            </Link>
+            </button>
           </div>
         </div>
       </header>

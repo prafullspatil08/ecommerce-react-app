@@ -99,7 +99,7 @@ export const productSlice = createSlice({
         state.loading = false;
       })
       .addCase(saveProduct.rejected, (state: any, action) => {
-        state.loading = true;
+        state.loading = false;
       })
       .addCase(fetchAllProduct.pending, (state: any, action) => {
         state.loading = true;

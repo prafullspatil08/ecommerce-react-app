@@ -1,9 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ProductList = () => {
+  const navigate = useNavigate();
   const products = useSelector((state: any) => state?.product?.all_products);
+  const handleRoute = (path: string) => {
+    navigate(path);
+  };
   if (products?.length === 0) {
     return (
       <section className="text-gray-600 body-font">
@@ -21,11 +25,11 @@ const ProductList = () => {
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap -m-4">
             {products?.map((product: any) => {
-              const { id, title, price, category, image } =
-                product;
+              const { id, title, price, category, image } = product;
               return (
-                <Link key={product?.id}
-                  to={`/product/${id}`}
+                <button
+                  key={product?.id}
+                  onClick={()=> handleRoute(`/product/${id}`)}
                   className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-lg cursor-pointer rounded"
                 >
                   <p className="block relative h-48 rounded overflow-hidden">
@@ -44,7 +48,7 @@ const ProductList = () => {
                     </h2>
                     <p className="mt-1 text-md font-semibold">${price}</p>
                   </div>
-                </Link>
+                </button>
               );
             })}
           </div>

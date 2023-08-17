@@ -21,7 +21,7 @@ function App() {
   };
   return (
     <Provider store={store}>
-      <PersistGate loading={<></>} persistor={persistor}>
+      <PersistGate persistor={persistor}>
         <BrowserRouter>
           <ThemeProvider>
             <div className={`${isDark ? "dark" : "light"}`}>

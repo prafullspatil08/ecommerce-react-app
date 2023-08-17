@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { deleteProduct, fetchSingleProduct } from "../app/slices/ProductSlice";
 import { AppDispatch } from "../app/Store";
 import { toast } from "react-toastify";
@@ -10,7 +10,9 @@ import {
   DialogBody,
   DialogFooter,
   DialogHeader,
+  Tooltip,
 } from "@material-tailwind/react";
+import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
 const ProductDetails = () => {
   const [open, setOpen] = useState(false);
@@ -54,6 +56,10 @@ const ProductDetails = () => {
       })
       .catch();
   };
+
+  const handleRoute = (path: string) => {
+    navigate(path);
+  };
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
@@ -70,18 +76,19 @@ const ProductDetails = () => {
                   {product?.category}
                 </h2>
                 <div className="flex cursor-pointer">
-                  <Link
-                    to={`/add-product/${id}`}
-                    className="text-sm  mr-2 title-font text-gray-500 tracking-widest uppercase"
-                  >
-                    Edit
-                  </Link>
-                  <h2
-                    onClick={handleOpen}
-                    className="text-sm title-font text-gray-500 tracking-widest uppercase"
-                  >
-                    Delete
-                  </h2>
+                  <Tooltip content="Edit">
+                    <button className="text-primaryy-500 mr-3"  onClick={() => handleRoute(`/add-product/${id}`)}>
+                      <AiFillEdit size={30} />
+                    </button>
+                  </Tooltip>
+                  <Tooltip content="Delete">
+                    <button
+                      onClick={handleOpen}
+                      className="text-primaryy-500"
+                    >
+                      <AiFillDelete size={30} />
+                    </button>
+                  </Tooltip>
                 </div>
               </div>
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">

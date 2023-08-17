@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AppDispatch } from "../app/Store";
 import { toast } from "react-toastify";
 import { addToCartProduct } from "../app/slices/CartSlice";
 
 const Cart = () => {
   const [total, setTotal] = useState(0);
-  const carts = useSelector((state: any) => state?.cart?.cartItems);
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+  const carts = useSelector((state: any) => state?.cart?.cartItems);
   useEffect(() => {
     const total = carts.reduce((acc: any, item: any) => {
       return acc + item?.price * item?.quantity;
@@ -54,6 +55,10 @@ const Cart = () => {
       });
     }
   };
+
+  const handleRoute =(path:string)=>{
+    navigate(path)
+  }
   return (
     <div>
       <div className="container mx-auto mt-10">
@@ -142,13 +147,12 @@ const Cart = () => {
                 })}
               </>
             )}
-            <Link
-              to={"/products"}
+            <button onClick={()=> handleRoute}
               className="flex font-semibold text-primaryy-600 text-sm mt-10"
             >
               <MdOutlineKeyboardBackspace size={20} />
               Continue Shopping
-            </Link>
+            </button>
           </div>
           <div id="summary" className="w-1/4 px-8 py-10">
             <h1 className="font-semibold text-2xl border-b pb-8">

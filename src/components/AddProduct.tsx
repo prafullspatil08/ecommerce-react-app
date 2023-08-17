@@ -15,16 +15,19 @@ const AddProduct = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const product = useSelector((state: any) => state?.product?.product);
-  useEffect(() => {
-    dispatch(fetchSingleProduct(id));
-  }, [dispatch, id]);
   const initialValues = {
     title: product?.title ?? "",
-    price: product?.price ?? null,
+    price: product?.price ?? 0,
     category: product?.category ?? "men's clothing",
     description: product?.description ?? "",
   };
-
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchSingleProduct(id));
+    } else {
+      dispatch(fetchSingleProduct(id));
+    }
+  }, [dispatch, id]);
   const handleChange = (field: any, value: any) => {
     field.onChange({ target: { name: field.name, value: value } });
   };
