@@ -4,7 +4,7 @@ import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AppDispatch } from "../app/Store";
-import { addToCartProduct } from "../features/Post/PostSlice";
+import { addToCartProduct } from "../app/slices/ProductSlice";
 import { toast } from "react-toastify";
 
 const Cart = () => {
@@ -63,7 +63,7 @@ const Cart = () => {
               <h1 className="font-semibold text-2xl">1 Items</h1>
             </div>
 
-            {carts.length === 0 ? (
+            {carts?.length === 0 ? (
               <>
                 <div className="mt-5 text-gray-700 text-center">
                   No Items available
@@ -85,7 +85,7 @@ const Cart = () => {
                     Total
                   </h3>
                 </div>
-                {carts.map((item: any) => {
+                {carts?.map((item: any) => {
                   return (
                     <div
                       key={item?.id}

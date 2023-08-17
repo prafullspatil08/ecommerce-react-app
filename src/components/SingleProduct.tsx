@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-
 import {
   addToCartProduct,
   deleteProduct,
   fetchSingleProduct,
-} from "../features/Post/PostSlice";
+} from "../app/slices/ProductSlice";
 import { AppDispatch } from "../app/Store";
 import { toast } from "react-toastify";
 

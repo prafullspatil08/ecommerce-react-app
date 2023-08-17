@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./screens/Home";
-import SingleProduct from "./screens/SingleProduct";
-import Products from "./screens/Products";
-import Cart from "./screens/Cart";
-import AddProduct from "./screens/AddProduct";
-import PageNotFound from "./screens/PageNotFound";
-import Contact from "./screens/Contact";
+import Footer from "./components/shared/Footer";
+import AddProduct from "./components/AddProduct";
+import Header from "./components/shared/Header";
+import PageNotFound from "./components/shared/PageNotFound";
+import Home from "./components/Home";
+import Products from "./components/Products";
+import SingleProduct from "./components/SingleProduct";
+import Cart from "./components/Cart";
+import Contact from "./components/Contact";
 
 function App() {
   const [isDark, setIsDark] = useState(false);

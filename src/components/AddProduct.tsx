@@ -1,8 +1,8 @@
 import { Field, Form, Formik } from "formik";
-import { productFormValidationSchema } from "../validations/ValidationSchemas";
+import { productFormValidationSchema } from "../utils/ValidationSchemas";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../app/Store";
-import { fetchSingleProduct, saveProduct, updateProduct } from "../features/Post/PostSlice";
+import { fetchSingleProduct, saveProduct, updateProduct } from "../app/slices/ProductSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
