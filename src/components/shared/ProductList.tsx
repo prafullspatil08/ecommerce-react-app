@@ -23,32 +23,35 @@ const ProductList = () => {
     <div>
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-wrap -m-4">
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 sm:grid-cols-2 ">
             {products?.map((product: any) => {
               const { id, title, price, category, image } = product;
               return (
                 <button
-                  key={product?.id}
                   onClick={() => handleRoute(`/product/${id}`)}
-                  className="lg:w-1/4 md:w-1/2 p-4 w-full  shadow-lg cursor-pointer rounded"
+                  className="overflow-hidden rounded-lg shadow-lg"
                 >
-                  <p className="block relative h-48 rounded overflow-hidden">
+                <p className="block relative h-48 my-[20px]">
                     <img
                       alt={title}
                       className="object-contain object-center w-full h-full block"
                       src={image}
                     />
                   </p>
-                  <div className="mt-4">
+
+                  <header className="p-[10px] text-left">
                     <h3 className="text-gray-500 uppercase text-xs tracking-widest title-font mb-1">
                       {category}
                     </h3>
                     <h2 className="text-gray-800 dark:text-gray-300 truncate title-font text-lg font-medium">
                       {title}
                     </h2>
-                    <p className="mt-1 text-md font-semibold">${price}</p>
-                  </div>
+                  </header>
+                  <footer className="flex items-center justify-between leading-none p-2 md:p-4">
+                    <p className="text-md font-semibold">${price}</p>
+                  </footer>
                 </button>
+                
               );
             })}
           </div>
