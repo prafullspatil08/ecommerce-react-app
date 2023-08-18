@@ -2,6 +2,7 @@ import { Field, Form, Formik } from "formik";
 import { productFormValidationSchema } from "../utils/ValidationSchemas";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../app/Store";
+import './AddProduct.css'
 import {
   fetchSingleProduct,
   saveProduct,
@@ -37,21 +38,17 @@ const AddProduct = () => {
     if (id) {
       payload["id"] = id;
       payload["image"] = product.image;
-      dispatch(updateProduct(payload))
-        .unwrap()
-        .then(() => {
-          navigate("/products");
-        })
-        .catch();
+      dispatch(updateProduct(payload));
       resetForm();
       validateForm();
     } else {
       payload["image"] =
-        "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg";
+        "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg";
       dispatch(saveProduct(payload));
       resetForm();
       validateForm();
     }
+    navigate("/products")
   };
   return (
     <div>
@@ -102,11 +99,12 @@ const AddProduct = () => {
                                   onChange={(e) =>
                                     handleChange(field, e.target.value)
                                   }
-                                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-primaryy-500 focus:bg-white focus:ring-2 focus:ring-primaryy-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                  className={`w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-primaryy-500 focus:bg-white focus:ring-2 focus:ring-primaryy-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out ${form.touched.title &&
+                                    Boolean(form.errors.title)? 'invalid-input' : ''}`}
                                 />
                                 {form.touched.title &&
                                   Boolean(form.errors.title) && (
-                                    <span className="text-red-500 text-sm capitalize">
+                                    <span className="text-red-500 text-sm normal-case">
                                       {form.touched.title && form.errors.title}
                                     </span>
                                   )}
@@ -130,6 +128,7 @@ const AddProduct = () => {
                                 <input
                                   type="number"
                                   id="price"
+                                  min="0"
                                   name="price"
                                   value={field.value}
                                   onChange={(e) =>
@@ -141,11 +140,12 @@ const AddProduct = () => {
                                       price: true,
                                     });
                                   }}
-                                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-primaryy-500 focus:bg-white focus:ring-2 focus:ring-primaryy-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                  className={`w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-primaryy-500 focus:bg-white focus:ring-2 focus:ring-primaryy-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out ${form.touched.price &&
+                                    Boolean(form.errors.price)? 'invalid-input' : ''}`}
                                 />
                                 {form.touched.price &&
                                   Boolean(form.errors.price) && (
-                                    <span className="text-red-500 text-sm capitalize">
+                                    <span className="text-red-500 text-sm normal-case">
                                       {form.touched.price && form.errors.price}
                                     </span>
                                   )}
@@ -176,7 +176,7 @@ const AddProduct = () => {
                                     });
                                   }}
                                   value={field.value}
-                                  className="block p-2 capitalize focus:border-none text-gray-800 w-full text-sm"
+                                  className="block p-2 normal-case focus:border-none text-gray-800 w-full text-sm"
                                 >
                                   <option value="men's clothing">
                                     men's clothing
@@ -191,7 +191,7 @@ const AddProduct = () => {
                                 </select>
                                 {form.touched.category &&
                                   Boolean(form.errors.category) && (
-                                    <span className="text-red-500 text-sm capitalize">
+                                    <span className="text-red-500 text-sm normal-case">
                                       {form.touched.category &&
                                         form.errors.category}
                                     </span>
@@ -225,11 +225,12 @@ const AddProduct = () => {
                                     });
                                   }}
                                   value={field.value}
-                                  className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-primaryy-500 focus:bg-white focus:ring-2 focus:ring-primaryy-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                                  className={`w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-primaryy-500 focus:bg-white focus:ring-2 focus:ring-primaryy-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out ${form.touched.description &&
+                                    Boolean(form.errors.description)? 'invalid-input' : ''}`}
                                 />
                                 {form.touched.description &&
                                   Boolean(form.errors.description) && (
-                                    <span className="text-red-500 text-sm capitalize">
+                                    <span className="text-red-500 text-sm normal-case">
                                       {form.touched.description &&
                                         form.errors.description}
                                     </span>

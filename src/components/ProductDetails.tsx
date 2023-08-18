@@ -284,7 +284,7 @@ const ProductDetails = () => {
             Close
           </button>
           <button
-            className="flex ml-auto mr-2 text-white bg-primaryy-500 border-0 hover:border hover:text-gray-800 py-2 px-6 focus:outline-none hover:border-primaryy-500 hover:bg-white rounded"
+            className="flex ml-auto mr-2 text-white bg-primaryy-500 border-0 hover:border hover:text-gray-800 py-2 px-6 focus:outline-none  hover:bg-primaryy-700 rounded"
             onClick={onDelete}
           >
             Delete

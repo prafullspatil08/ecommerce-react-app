@@ -54,7 +54,7 @@ const Cart = () => {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
     } else {
-      toast.error("Please Add Product To Cart", {
+      toast.error("Please add product to cart", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
     }
