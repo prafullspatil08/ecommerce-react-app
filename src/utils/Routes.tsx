@@ -2,12 +2,12 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from '../components/Home'
 import { ROUTES } from './appConstant'
-import Products from '../components/Products'
-import ProductDetails from '../components/ProductDetails'
-import Cart from '../components/Cart'
-import AddProduct from '../components/AddProduct'
-import Contact from '../components/Contact'
+import Contact from '../components/shared/Contact'
 import PageNotFound from '../components/shared/PageNotFound'
+import Products from '../components/product/Products'
+import ProductDetails from '../components/product/ProductDetails'
+import Cart from '../components/product/Cart'
+import AddProduct from '../components/product/AddProduct'
 
 const Router = () => {
   return (

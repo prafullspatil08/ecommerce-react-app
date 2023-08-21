@@ -3,9 +3,9 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { AppDispatch } from "../app/Store";
 import { toast } from "react-toastify";
-import { addToCartProduct } from "../app/slices/CartSlice";
+import { AppDispatch } from "../../app/Store";
+import { addToCartProduct } from "../../app/slices/CartSlice";
 
 const Cart = () => {
   const [total, setTotal] = useState(0);

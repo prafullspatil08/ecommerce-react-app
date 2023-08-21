@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { deleteProduct, fetchSingleProduct } from "../app/slices/ProductSlice";
-import { AppDispatch } from "../app/Store";
 import { toast } from "react-toastify";
-import { addToCartProduct } from "../app/slices/CartSlice";
 import {
   Dialog,
   DialogBody,
@@ -13,6 +10,9 @@ import {
   Tooltip,
 } from "@material-tailwind/react";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { AppDispatch } from "../../app/Store";
+import { deleteProduct, fetchSingleProduct } from "../../app/slices/ProductSlice";
+import { addToCartProduct } from "../../app/slices/CartSlice";
 
 const ProductDetails = () => {
   const [open, setOpen] = useState(false);

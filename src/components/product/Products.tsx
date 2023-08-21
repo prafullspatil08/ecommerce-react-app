@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../app/Store";
-import { fetchAllProduct } from "../app/slices/ProductSlice";
-import ProductCard from "./shared/ProductList";
+import { AppDispatch } from "../../app/Store";
+import { fetchAllProduct } from "../../app/slices/ProductSlice";
+import ProductList from "../shared/ProductList";
 
 const Products = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -11,7 +11,7 @@ const Products = () => {
   });
   return (
     <div>
-      <ProductCard />
+      <ProductList />
     </div>
   );
 };

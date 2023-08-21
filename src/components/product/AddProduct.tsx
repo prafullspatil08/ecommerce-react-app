@@ -1,15 +1,11 @@
 import { Field, Form, Formik } from "formik";
-import { productFormValidationSchema } from "../utils/ValidationSchemas";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../app/Store";
 import './AddProduct.css'
-import {
-  fetchSingleProduct,
-  saveProduct,
-  updateProduct,
-} from "../app/slices/ProductSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { fetchSingleProduct, saveProduct, updateProduct } from "../../app/slices/ProductSlice";
+import { productFormValidationSchema } from "../../utils/ValidationSchemas";
+import { AppDispatch } from "../../app/Store";
 
 const AddProduct = () => {
   const { id } = useParams();
