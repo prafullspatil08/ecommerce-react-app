@@ -77,7 +77,7 @@ const ProductDetails = () => {
                 </h2>
                 <div className="flex cursor-pointer">
                   <Tooltip content="Edit">
-                    <button className="text-primaryy-500 mr-3"  onClick={() => handleRoute(`/add-product/${id}`)}>
+                    <button className="text-primaryy-500 mr-3"  onClick={() => handleRoute(`/edit-product/${id}`)}>
                       <AiFillEdit size={30} />
                     </button>
                   </Tooltip>

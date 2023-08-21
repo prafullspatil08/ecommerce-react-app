@@ -5,6 +5,6 @@ export const ROUTES = {
   CART: "/cart",
   ADD_PRODUCT: "/add-product",
   CONTACT: "/contact",
-  EDIT_PRODUCT: "/add-product/:id",
+  EDIT_PRODUCT: "/edit-product/:id",
   PAGE_NOT_FOUND: "*",
 };
